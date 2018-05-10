@@ -11,7 +11,7 @@ a {
 }
 
 body {
-    background-color: #eee;
+    background-color: white;
     color: #4e4544;
     font: normal 16px sans-serif;
 }
@@ -20,9 +20,14 @@ body {
 
 .container{
     display: grid;
-
     max-width: 900px;
-    background-color: #fff;
+    background-color: rgba(67, 242, 79, 2);
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-template-areas:"header header"
+                        "main barraLat"
+                        "footer footer";
+    grid-gap: 3%;
     margin: 0 auto;
     padding: 0 60px;
 }
@@ -31,16 +36,16 @@ body {
 
 header{
     grid-area: header;
-    color: #ef5350;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "texto boton";
+    color: black;
     padding: 20px 0;
-
-
 }
 
 header nav {
-    grid-area: nav;
+    grid-area: texto;
     justify-self: start;
-    
     list-style: none;
 
 /*  This did not work well, inline-block used instead */
@@ -55,11 +60,12 @@ header nav li {
 }
 
 header button {
+    grid-area: boton;
     justify-self: end;
-    background-color: #ef5350;
+    background-color: white;
     border: none;
     padding: 8px 25px;
-    color: #fff;
+    color: #000000;
     cursor: pointer;
     text-transform: uppercase;
 }
@@ -82,14 +88,17 @@ header button {
 }
 
 .main img {
-
+    width: 100%;
 }
 
 
 /* Sidebar */
 
 .sidebar {
-    grid-area: sidebar;
+    grid-area: barraLat;
+    display: grid;
+    grid-template-columns: 20fr;
+    background-color: black;
     border: 1px solid #a2a2a2;
     padding: 20px;
 }
@@ -98,13 +107,43 @@ header button {
 
 footer {
     grid-area: footer;
-    color: #4c69ef;
+    color: #fcfaff;
     text-align: center;
     padding: 20px 0;
 }
 
 footer p {
+    grid-area: footer;
     color: #777;
     font-size: 12px;
     padding: 10px;
+}
+
+@media (max-width: 600px){
+    .container{
+        background-color: black;
+        color: #00c900;
+        grid-template-columns: 1fr;
+        grid-template-areas: "header"
+                             "barraLat"
+                             "main"
+                             "footer";
+    }
+
+    .sidebar{
+
+
+    }
+
+    header{
+        display: grid;
+        color: #00c900;
+        grid-template-columns: 1fr;
+        grid-template-areas: "texto"
+                             "boton";
+    }
+
+    header button {
+        justify-self: center;
+    }
 }
